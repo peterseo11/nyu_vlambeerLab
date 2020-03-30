@@ -1,77 +1,33 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UnityEngine;
 
-// MAZE PROC GEN LAB
-// all students: complete steps 1-6, as listed in this file
-// optional: if you're up for a bit of a mind safari, complete the "extra tasks" to do at the very bottom
+public class pathMaker2 : MonoBehaviour {
 
-// STEP 1: ======================================================================================
-// put this script on a Sphere... it SHOULD move around, and drop a path of floor tiles behind it
+    int counter = 0;
+    public Transform floorPreFab;
+    public Transform pathmakerSpherePrefab;
 
-public class Pathmaker : MonoBehaviour {
-
-	// STEP 2: ============================================================================================
-	// translate the pseudocode below
-
-private int counter = 0;
-public static int tileLimiter = 0; 
-public Transform floorPreFab;
-public Transform pathmakerSpherePrefab;
+    //	Declare a public Transform called floorPrefab, assign the prefab in inspector;
+    //	Declare a public Transform called pathmakerSpherePrefab, assign the prefab in inspector; 		// you'll have to make a "pathmakerSphere" prefab later
 
 
-    private void Start()
+    void Update()
     {
-		GetComponent<SpriteRenderer>();
+        //			Generate a random number from 0.0f to 1.0f;
+        //			If random number is less than 0.25f, then rotate myself 90 degrees;
+        //				... Else if number is 0.25f-0.5f, then rotate myself -90 degrees;
+        //				... Else if number is 0.99f-1.0f, then instantiate a pathmakerSpherePrefab clone at my current position;
+        //			// end elseIf
 
+        //			Instantiate a floorPrefab clone at current position;
+        //			Move forward ("forward", as in, the direction I'm currently facing) by 5 units;
+        //			Increment counter;
+        //		Else:
+        //			Destroy my game object; 		// self destruct if I've made enough tiles already
     }
 
-    void Update () 
-	{
-		if (counter < 75)
-		{
-			float randomNumber = UnityEngine.Random.Range(0.0f, 1.0f); 
-			if (randomNumber < 0.25f)
-
-			{
-				this.transform.Rotate(90f, 0, 0);
-			}
-			else if (randomNumber > 0.25f && randomNumber < 0.5f)
-
-			{
-				this.transform.Rotate(-90f, 0, 0);
-			}
-			else if (randomNumber > 0.99f && randomNumber < 1.0f && tileLimiter < 500f)
-
-			{
-				Instantiate(pathmakerSpherePrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-			}
-
-			Instantiate(floorPreFab, this.transform.position, Quaternion.Euler(0, 0, 90));
-			counter++;
-			this.transform.Translate( new Vector3(0, 5, 0));
-		}
-	}
-		
-	
-
-
-		//			Generate a random number from 0.0f to 1.0f;
-		//			If random number is less than 0.25f, then rotate myself 90 degrees;
-		//				... Else if number is 0.25f-0.5f, then rotate myself -90 degrees;
-		//				... Else if number is 0.99f-1.0f, then instantiate a pathmakerSpherePrefab clone at my current position;
-		//			// end elseIf
-
-		//			Instantiate a floorPrefab clone at current position;
-		//			Move forward ("forward", as in, the direction I'm currently facing) by 5 units;
-		//			Increment counter;
-		//		Else:
-		//			Destroy my game object; 		// self destruct if I've made enough tiles already
-	
-
-} 
+}
 
 // MORE STEPS BELOW!!!........
 
@@ -142,3 +98,6 @@ public Transform pathmakerSpherePrefab;
 // 2. if the raycast "fails" that means there's empty void there, so then instantiate a Wall tile prefab
 // 3. ... repeat until walls surround your entire floorplan
 // (technically, you will end up raycasting the same spot over and over... but the "proper" way to do this would involve keeping more lists and arrays to track all this data)
+
+// Update is called once per frame
+
