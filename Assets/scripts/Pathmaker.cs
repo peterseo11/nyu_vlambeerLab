@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // MAZE PROC GEN LAB
 // all students: complete steps 1-6, as listed in this file
@@ -28,11 +29,13 @@ public Transform pathmakerSpherePrefab;
 
     }
 
-    void Update () 
+	void Update()
 	{
-		if (counter < 75)
+		
+
+		if (counter < 100)
 		{
-			float randomNumber = UnityEngine.Random.Range(0.0f, 1.0f); 
+			float randomNumber = UnityEngine.Random.Range(0.0f, 1.0f);
 			if (randomNumber < 0.25f)
 
 			{
@@ -51,7 +54,11 @@ public Transform pathmakerSpherePrefab;
 
 			Instantiate(floorPreFab, this.transform.position, Quaternion.Euler(0, 0, 90));
 			counter++;
-			this.transform.Translate( new Vector3(0, 5, 0));
+			this.transform.Translate(new Vector3(0, 5, 0));
+		}
+		else
+		{
+			Destroy(this.gameObject);
 		}
 	}
 		
